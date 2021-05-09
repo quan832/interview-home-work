@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 // setup Route
 import { Route } from "react-router";
-
+// import component
+import Header from "../components/Header/Header";
 export default function HomeTemplate(props) {
   // declare component, route
   let { Component, ...restRoute } = props;
@@ -11,15 +12,15 @@ export default function HomeTemplate(props) {
       {...restRoute}
       render={(propsRoute) => {
         return (
-          <div className="HomeTemplate">
+          <Fragment>
             {/* Header */}
-
-            <div className="wrapper">
-              <div class="sa4d25">
+            <Header></Header>
+            <div className="container">
+              <div class="row">
                 <Component {...propsRoute} />
               </div>
             </div>
-          </div>
+          </Fragment>
         );
       }}
     />

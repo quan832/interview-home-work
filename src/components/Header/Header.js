@@ -6,7 +6,7 @@ export default function Header() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <a className="navbar-brand" href="#!">
-          Start Bootstrap
+          Start Blog
         </a>
         <button
           className="navbar-toggler"
@@ -34,12 +34,12 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#!">
-                Services
+                Blog
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#!">
-                Contact
+                Login
               </a>
             </li>
           </ul>
