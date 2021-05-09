@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 //import compontent
 import Post from "../../components/Post/Post";
 import Search from "../../components/Search/Search";
+import LoginWidget from "../../components/Login/Login-widget/LoginWidget";
+
 export default function Home() {
   return (
     <Fragment>
@@ -14,6 +16,8 @@ export default function Home() {
       {/* side widgets */}
       <div class="col-md-4">
         <Search />
+        {/* user login */}
+        <LoginWidget />
       </div>
     </Fragment>
   );
