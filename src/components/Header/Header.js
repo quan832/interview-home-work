@@ -1,7 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
+  //get user
+  const user = useSelector((state) => {
+    return state.loginUserReducer.user;
+  });
+
   return (
     //navigation
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -22,7 +28,7 @@ export default function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
+            <li className="nav-item ">
               <NavLink className="nav-link" to="/home">
                 Home
                 <span className="sr-only">(current)</span>
@@ -39,9 +45,22 @@ export default function Header() {
               </a>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
+              {!user.username ? (
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              ) : (
+                <NavLink
+                  onClick={() => {
+                    localStorage.clear();
+                    window.location.assign("/login");
+                  }}
+                  className="nav-link"
+                  to="/login"
+                >
+                  Logout
+                </NavLink>
+              )}
             </li>
           </ul>
         </div>

@@ -36,9 +36,26 @@
   font-size: 16px;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
-  color: #333 !important;
+  color: #333;
   text-align: center;
   position: relative;
+}
+
+.tutor_name:hover {
+  color: gray;
+  text-decoration: none;
+}
+
+.tutor_cate {
+  font-size: 13px;
+  color: #686f7a;
+  margin-top: 5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  margin-bottom: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .tutor_social_links {

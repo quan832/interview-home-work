@@ -3,12 +3,14 @@ import LoginWidget from "../../components/Login/Login-widget/LoginWidget";
 import Search from "../../components/Search/Search";
 import PostDetail from "../../components/Detail/PostDetail";
 
-export default function Detail() {
+export default function Detail(props) {
+  let { id } = props.match.params;
+
   return (
     <Fragment>
       {/* Post Content */}
       <div className="col-lg-8">
-        <PostDetail />
+        <PostDetail id={id} />
       </div>
 
       {/*  Sidebar widgets column*/}

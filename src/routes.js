@@ -15,6 +15,7 @@ const routesHome = [
     extact: true,
     component: Detail,
   },
+  { path: "/home", exact: true, component: Home },
 ];
 
 export { routesHome };

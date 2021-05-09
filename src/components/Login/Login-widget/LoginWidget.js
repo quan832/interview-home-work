@@ -1,22 +1,53 @@
-import user from "./user.png";
+import userpng from "./user.png";
+import userLogin from "./images/img-11.jpg";
 import "./LoginWidget.css";
-import React from "react";
+import React, { Fragment } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function LoginWidget() {
+  const user = useSelector((state) => {
+    return state.loginUserReducer.user;
+  });
+
   return (
     <div className="card my-4">
       <div className="card-body">
         <div className="tutor_img">
-          <a href="my_instructor_profile_view.html">
-            <img src={user} />
-          </a>
+          {!user.username ? (
+            <NavLink to="/login">
+              <img src={userpng} />
+            </NavLink>
+          ) : (
+            <NavLink to="/login">
+              <img src={userLogin} />
+            </NavLink>
+          )}
         </div>
         <div className="tutor_content_dt">
           <div className="tutor150">
-            <a className="tutor_name tutor_name_active" href="/login">
-              Login Your Blog
-            </a>
+            {!user.username ? (
+              <Link className="tutor_name" to="/login" href="/login">
+                Login Your Blog
+              </Link>
+            ) : (
+              <Fragment>
+                <span className="tutor_name" to="/login" href="/login">
+                  {user.name === "" ? "default" : user.name}
+                </span>
+              </Fragment>
+            )}
           </div>
+          {!user.username ? (
+            <div></div>
+          ) : (
+            <Fragment>
+              <div class="tutor_cate">
+                <span>I'm frontend developer</span>
+              </div>
+            </Fragment>
+          )}
+
           <ul className="tutor_social_links">
             <li>
               <a href="#" className="fb">
