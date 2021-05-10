@@ -10,26 +10,26 @@ export default function Categories() {
           <div className="col-lg-6">
             <ul className="list-unstyled mb-0">
               <li>
-                <a href="#!">Web Design</a>
+                <a href="#!">consult</a>
               </li>
               <li>
-                <a href="#!">HTML</a>
+                <a href="#!">it</a>
               </li>
               <li>
-                <a href="#!">Freebies</a>
+                <a href="#!">hala</a>
               </li>
             </ul>
           </div>
           <div className="col-lg-6">
             <ul className="list-unstyled mb-0">
               <li>
-                <a href="#!">JavaScript</a>
+                <a href="#!">gov</a>
               </li>
               <li>
-                <a href="#!">CSS</a>
+                <a href="#!">legal</a>
               </li>
               <li>
-                <a href="#!">Tutorials</a>
+                <a href="#!">political</a>
               </li>
             </ul>
           </div>

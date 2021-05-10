@@ -8,6 +8,7 @@ import getBlogs from "./reducers/getPost";
 import LoginUser from "./reducers/auth/loginUser";
 import getUser from "./reducers/getUser";
 import getComment from "./reducers/getComment";
+import { loadingReducer } from "./reducers/loading/loadingReducer";
 const middleWareSaga = createMiddleWareSaga();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   getUsersReducer: getUser,
   getCommentsReducer: getComment,
   loginUserReducer: LoginUser,
+  LoadingReducer: loadingReducer,
 });
 
 const store = createStore(

@@ -1,5 +1,4 @@
 import userpng from "./user.png";
-import userLogin from "./images/img-11.jpg";
 import "./LoginWidget.css";
 import React, { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -16,10 +15,10 @@ export default function LoginWidget() {
         <div className="tutor_img">
           {!user.username ? (
             <NavLink to="/login">
-              <img src={userpng} />
+              <img src={userpng} alt="" />
             </NavLink>
           ) : (
-            <img src={`./images/user/img-${user.id}.jpg`} />
+            <img src={`./images/user/img-${user.id}.jpg`} alt="" />
           )}
         </div>
         <div className="tutor_content_dt">

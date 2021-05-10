@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import LoginWidget from "../../components/Login/Login-widget/LoginWidget";
-import Search from "../../components/Search/Search";
 import PostDetail from "../../components/Detail/PostDetail";
 import Categories from "../../components/Categories/Categories";
 

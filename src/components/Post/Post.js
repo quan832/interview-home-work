@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { getComment, getPost, getUsers } from "../../redux/actions";
+import Loading from "../Loading/Loading";
 import "./Post.css";
 
 export default function Post(props) {
@@ -15,6 +16,7 @@ export default function Post(props) {
 
   // dispatch
   const dispatch = useDispatch();
+
   // call api
   useEffect(() => {
     dispatch(getPost());
@@ -27,18 +29,18 @@ export default function Post(props) {
     return Posts?.map((post, index) => {
       let authority = users
         ?.filter((item) => {
-          return item.id == post.owner;
+          return item.id === post.owner;
         })
         .map((item) => {
           return item.username;
         });
 
       const commentPost = comments.filter((item) => {
-        return item.post == post.id;
+        return item.post === post.id;
       });
 
       return (
-        <Fragment>
+        <Fragment key={index}>
           <div className="card mb-4" key={index}>
             <Link to={`/detail${post.id}`}>
               <img
@@ -78,7 +80,7 @@ export default function Post(props) {
       // get auth name
       let authority = users
         ?.filter((item) => {
-          return item.id == post.owner;
+          return item.id === post.owner;
         })
         .map((item) => {
           return item.username;
@@ -107,7 +109,7 @@ export default function Post(props) {
               </NavLink>
             </div>
             <div className="card-footer text-muted">
-              Posted on January 1, 2021 by
+              Posted by
               <a href="#!"> {authority}</a>
             </div>
           </div>
@@ -119,6 +121,7 @@ export default function Post(props) {
     // Blog post
     <Fragment>
       {" "}
+      <Loading />
       {props.search === "" ? renderListPost() : renderPostSearch()}
     </Fragment>
   );

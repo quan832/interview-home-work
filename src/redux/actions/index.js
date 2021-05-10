@@ -13,12 +13,41 @@ import { history } from "../../components/App/App";
 // CommonJS
 const Swal = require("sweetalert2");
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 2500,
+  width: 300,
+
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
+
 export const getPost = () => {
   return async (dispatch) => {
-    postService.fetchAllPost().then((result) => {
-      // dispatch action
-      dispatch(createAction(GET_BLOGS, result.data));
+    //Gọi action loading open
+    dispatch({
+      type: "openLoading",
     });
+
+    // loading
+    setTimeout(async () => {
+      await postService.fetchAllPost().then((result) => {
+        // dispatch action
+
+        dispatch(createAction(GET_BLOGS, result.data));
+      });
+
+      // Tắt loadings
+      dispatch({
+        type: "closeLoading",
+      });
+
+    },1000);
   };
 };
 
@@ -50,6 +79,11 @@ export const loginUser = (user) => {
         dispatch(createAction(LOGIN_USER, userLogin[0]));
 
         localStorage.setItem("username", JSON.stringify(userLogin));
+
+        Toast.fire({
+          icon: "success",
+          title: "Signed in successfully",
+        });
 
         history.push("/");
       } else {

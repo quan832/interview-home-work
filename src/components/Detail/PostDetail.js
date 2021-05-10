@@ -11,16 +11,14 @@ export default function PostDetail(props) {
   const comments = useSelector((state) => state.getCommentsReducer.result);
 
   let authorityName;
-  let authorityId;
   let idPost = props.id;
 
   let authority = users
     ?.filter((item) => {
-      return item.id == detailPost.owner;
+      return item.id === detailPost.owner;
     })
     .map((item) => {
       authorityName = item.username;
-      authorityId = item.id;
       return item;
     });
 
@@ -33,11 +31,10 @@ export default function PostDetail(props) {
 
   const renderComments = () => {
     const commentPost = comments.filter((item) => {
-      return item.post == idPost;
+      return item.post === idPost;
     });
 
     return commentPost.map((item, index) => {
-      console.log(item);
       return (
         <div className="media mb-4">
           <img
