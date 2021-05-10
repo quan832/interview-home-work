@@ -8,4 +8,10 @@ export default class PostService {
       method: "GET",
     });
   }
+  async fetchAllComment() {
+    return await Axios({
+      url: "./data/comments.json",
+      method: "GET",
+    });
+  }
 }

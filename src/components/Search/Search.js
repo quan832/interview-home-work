@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function Search() {
+export default function Search(props) {
+  // handle change
+  const handleChange = (event) => {
+    props.onChange(event.target.value);
+  };
+
   return (
     //search widget
     <div className="card my-4">
@@ -10,10 +15,13 @@ export default function Search() {
           <input
             className="form-control"
             type="text"
+            name="search"
+            value={props.value}
+            onChange={handleChange}
             placeholder="Search for..."
           />
           <span className="input-group-append">
-            <button className="btn btn-secondary" type="button">
+            <button type="submit" className="btn btn-secondary" type="button">
               Go!
             </button>
           </span>

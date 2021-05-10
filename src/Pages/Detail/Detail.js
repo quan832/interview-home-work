@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import LoginWidget from "../../components/Login/Login-widget/LoginWidget";
 import Search from "../../components/Search/Search";
 import PostDetail from "../../components/Detail/PostDetail";
+import Categories from "../../components/Categories/Categories";
 
 export default function Detail(props) {
   let { id } = props.match.params;
@@ -15,8 +16,9 @@ export default function Detail(props) {
 
       {/*  Sidebar widgets column*/}
       <div className="col-lg-4">
-        <Search />
+  
         <LoginWidget />
+        <Categories />
       </div>
     </Fragment>
   );

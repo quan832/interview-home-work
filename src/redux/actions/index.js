@@ -1,6 +1,7 @@
 import { postService, userService } from "../../services/typeService";
 import {
   GET_BLOGS,
+  GET_COMMENTS,
   GET_DETAIL_BLOG,
   GET_USERS,
   LOGIN_USER,
@@ -69,6 +70,15 @@ export const getUsers = () => {
   return async (dispatch) => {
     userService.loginUser().then((result) => {
       dispatch(createAction(GET_USERS, result.data));
+    });
+  };
+};
+
+// get comment post follow id
+export const getComment = () => {
+  return async (dispatch) => {
+    postService.fetchAllComment().then((result) => {
+      dispatch(createAction(GET_COMMENTS, result.data));
     });
   };
 };

@@ -5,3 +5,9 @@
   text-overflow: ellipsis;
   max-width: 100%;
 }
+.card a .card-img-top {
+  transition: 0.3s all ease-in-out;
+}
+.card a .card-img-top:hover {
+  opacity: 0.5;
+}

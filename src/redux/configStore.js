@@ -7,7 +7,7 @@ import { rootSaga } from "./sagas/rootSaga";
 import getBlogs from "./reducers/getPost";
 import LoginUser from "./reducers/auth/loginUser";
 import getUser from "./reducers/getUser";
-
+import getComment from "./reducers/getComment";
 const middleWareSaga = createMiddleWareSaga();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   // declare reducers in here
   getBlogsReducer: getBlogs,
   getUsersReducer: getUser,
+  getCommentsReducer: getComment,
   loginUserReducer: LoginUser,
 });
 

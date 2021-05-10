@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailPost, getUsers } from "../../redux/actions";
+import { getComment, getDetailPost, getUsers } from "../../redux/actions";
 
 export default function PostDetail(props) {
   //redux
@@ -8,18 +8,52 @@ export default function PostDetail(props) {
   // get data from reducer
   const detailPost = useSelector((state) => state.getBlogsReducer.detailPost);
   const users = useSelector((state) => state.getUsersReducer.result);
+  const comments = useSelector((state) => state.getCommentsReducer.result);
+
+  let authorityName;
+  let authorityId;
+  let idPost = props.id;
+
+  let authority = users
+    ?.filter((item) => {
+      return item.id == detailPost.owner;
+    })
+    .map((item) => {
+      authorityName = item.username;
+      authorityId = item.id;
+      return item;
+    });
 
   useEffect(() => {
     // action
-    const id = props.id;
-    dispatch(getDetailPost(id));
+    dispatch(getDetailPost(idPost));
     dispatch(getUsers());
+    dispatch(getComment());
   }, []);
 
-  let authority = users?.filter((item) => {
-    return item.id == detailPost.owner;
-  });
+  const renderComments = () => {
+    const commentPost = comments.filter((item) => {
+      return item.post == idPost;
+    });
 
+    return commentPost.map((item, index) => {
+      console.log(item);
+      return (
+        <div className="media mb-4">
+          <img
+            className="d-flex mr-3 rounded-circle"
+            src={`./images/user/img-${item.owner}.jpg`}
+            alt="..."
+            width="50"
+          />
+          <div className="media-body">
+            <h5 className="mt-0">{users[item.owner].username}</h5>
+            {item.content}
+          </div>
+        </div>
+      );
+    });
+  };
   return (
     <Fragment key={detailPost.id}>
       <div>
@@ -28,7 +62,7 @@ export default function PostDetail(props) {
         {/* Author*/}
         <p className="lead">
           by
-          <a href="#!"> {!authority ? " " : authority[0].username}</a>
+          <a href="#!"> {authorityName}</a>
         </p>
         <hr />
         {/* Date and time*/}
@@ -70,66 +104,8 @@ export default function PostDetail(props) {
             </form>
           </div>
         </div>
-        {/* Single comment*/}
-        <div className="media mb-4">
-          <img
-            className="d-flex mr-3 rounded-circle"
-            src="https://via.placeholder.com/50x50"
-            alt="..."
-          />
-          <div className="media-body">
-            <h5 className="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-            vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </div>
-        {/* Comment with nested comments*/}
-        <div className="media mb-4">
-          <img
-            className="d-flex mr-3 rounded-circle"
-            src="https://via.placeholder.com/50x50"
-            alt="..."
-          />
-          <div className="media-body">
-            <h5 className="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-            vulputate fringilla. Donec lacinia congue felis in faucibus.
-            <div className="media mt-4">
-              <img
-                className="d-flex mr-3 rounded-circle"
-                src="https://via.placeholder.com/50x50"
-                alt="..."
-              />
-              <div className="media-body">
-                <h5 className="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                nisi vulputate fringilla. Donec lacinia congue felis in
-                faucibus.
-              </div>
-            </div>
-            <div className="media mt-4">
-              <img
-                className="d-flex mr-3 rounded-circle"
-                src="https://via.placeholder.com/50x50"
-                alt="..."
-              />
-              <div className="media-body">
-                <h5 className="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                nisi vulputate fringilla. Donec lacinia congue felis in
-                faucibus.
-              </div>
-            </div>
-          </div>
-        </div>
+
+        {renderComments()}
       </div>
     </Fragment>
   );

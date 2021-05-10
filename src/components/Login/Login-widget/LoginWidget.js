@@ -19,9 +19,7 @@ export default function LoginWidget() {
               <img src={userpng} />
             </NavLink>
           ) : (
-            <NavLink to="/login">
-              <img src={userLogin} />
-            </NavLink>
+            <img src={`./images/user/img-${user.id}.jpg`} />
           )}
         </div>
         <div className="tutor_content_dt">
