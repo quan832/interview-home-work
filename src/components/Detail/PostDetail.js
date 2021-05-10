@@ -15,7 +15,7 @@ export default function PostDetail(props) {
 
   let authority = users
     ?.filter((item) => {
-      return item.id === detailPost.owner;
+      return item.id == detailPost.owner;
     })
     .map((item) => {
       authorityName = item.username;
@@ -31,7 +31,7 @@ export default function PostDetail(props) {
 
   const renderComments = () => {
     const commentPost = comments.filter((item) => {
-      return item.post === idPost;
+      return item.post == idPost;
     });
 
     return commentPost.map((item, index) => {
@@ -101,7 +101,7 @@ export default function PostDetail(props) {
             </form>
           </div>
         </div>
-
+        <hr class="mb-3"></hr>
         {renderComments()}
       </div>
     </Fragment>
